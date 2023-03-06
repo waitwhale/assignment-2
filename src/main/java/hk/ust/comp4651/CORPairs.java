@@ -251,7 +251,6 @@ public class CORPairs extends Configured implements Tool {
 		job2.setMapperClass(CORPairsMapper2.class);
 		job2.setCombinerClass(CORPairsCombiner2.class);
 		job2.setReducerClass(CORPairsReducer2.class);
-		job2.setPartitionerClass(MyPartitioner.class);
 
 		job2.setOutputKeyClass(PairOfStrings.class);
 		job2.setOutputValueClass(DoubleWritable.class);

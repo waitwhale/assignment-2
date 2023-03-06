@@ -246,6 +246,8 @@ public class CORStripes extends Configured implements Tool {
 		job2.setOutputValueClass(DoubleWritable.class);
 		job2.setMapOutputKeyClass(Text.class);
 		job2.setMapOutputValueClass(MapWritable.class);
+		job2.setNumReduceTasks(reduceTasks);
+
 		FileInputFormat.setInputPaths(job2, new Path(inputPath));
 		FileOutputFormat.setOutputPath(job2, new Path(outputPath));
 

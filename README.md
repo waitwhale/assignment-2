@@ -1,4 +1,4 @@
-# COMP4651 Assignment-3 (6 marks)
+# COMP4651 Assignment-2 (6 marks)
 
 ### Deadline: Mar 21, 23:59 (Tuesday)
 ---
@@ -8,7 +8,7 @@
 In this assignment, you will write MapReduce code that counts the bigrams appeared in a text file, using the two design patterns taught in class. Please follow these instructions carefully!
 
 ### Environment Setup
-Launch the [QuickStart VM][QuickStarts] using VirtualBox and allocate it at least 4 GB memory. In the VM, open the Terminal and clone this repo. In particular, you may create a directory called `comp4651` in the home folder: `mkdir comp4651`. You can `cd` into that directory and `git clone` this repo, which will download the sample and skeleton code to an `assignment-3-yourGitHubHandle` folder. 
+Launch the [QuickStart VM][QuickStarts] using VirtualBox and allocate it at least 4 GB memory. In the VM, open the Terminal and clone this repo. In particular, you may create a directory called `comp4651` in the home folder: `mkdir comp4651`. You can `cd` into that directory and `git clone` this repo, which will download the sample and skeleton code to an `assignment-2-yourGitHubHandle` folder. 
 
 > While we recommend using VirtualBox as the experimental platform, there can be other options, including [VMware VM][VMWare VM] and [KVM VM][KVM VM]. Please note that additional configurations may be required if you choose to use other platforms.
 
@@ -37,15 +37,15 @@ This assignment repo is generated using [Apache Maven][Maven]. You'll find a `po
 * Useful data structures: `PairOfStrings.java`, `HashMapStringIntWritable.java`
 * Result checking programs: `AnalyzeWordCount.java`, `AnalyzeBigramCount.java`, `AnalyzeBigramFrequency.java`
 
-You may want to use Java IDEs such as [Eclipse](Eclipse) or [IntelliJ](IntelliJ) to boost your coding/debugging efficiency. Eclipse is pre-installed in the QuickStart VM. To use it, go to the assignment-3 directory and generate an Eclipse project using Maven:
+You may want to use Java IDEs such as [Eclipse](Eclipse) or [IntelliJ](IntelliJ) to boost your coding/debugging efficiency. Eclipse is pre-installed in the QuickStart VM. To use it, go to the assignment-2 directory and generate an Eclipse project using Maven:
 ```
 $ mvn eclipse:eclipse --settings settings.xml
 ```
-Now open Eclipse. In the "File" menue, click "Import...". Expand the "General" tab, choose "Existing Projects into Workspace", and select root directory as `assignment-3-yourGitHubHandle`. This will import the Maven-generated Eclipse project into the workspace.
+Now open Eclipse. In the "File" menue, click "Import...". Expand the "General" tab, choose "Existing Projects into Workspace", and select root directory as `assignment-2-yourGitHubHandle`. This will import the Maven-generated Eclipse project into the workspace.
 
 ### Warming up 1: WordCount
 
-The assignment includes a sample WordCount code for you to get started. To try it out, let's `cd` into the `assignment-3-yourGitHubHandle` folder under which `pom.xml` is located. We can build the entire project by typing
+The assignment includes a sample WordCount code for you to get started. To try it out, let's `cd` into the `assignment-2-yourGitHubHandle` folder under which `pom.xml` is located. We can build the entire project by typing
 ```
 $ mvn clean package --settings settings.xml
 ```
@@ -55,7 +55,7 @@ $ hadoop fs -put 1400-8.txt .
 ```
 We can now run the WordCount example to count the occurrences of each word in the file we've just copied:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.WordCount -input 1400-8.txt -output wc -numReducers 2
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.WordCount -input 1400-8.txt -output wc -numReducers 2
 ```
 > Hadoop will print out a wealth of runtime information to track the job execution. Examining this information will give you a clear idea about what's going on there.
 
@@ -67,7 +67,7 @@ Along with the two splits, there is an empty file called `_SUCCESS`, which indic
 
 We have provided a handy tool (`AnalyzeWordCount.java`) to analyze the output:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeWordCount -input wc
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeWordCount -input wc
 ```
 The tool scans the output in `wc` and generates the following statistical summary:
 ```
@@ -129,11 +129,11 @@ where the three terms are tab-delimited (`"\t"`).
 
 Once you are done coding, you can build your programs by `mvn clean package --settings settings.xml`, and run them:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.BigramCountPairs -input 1400-8.txt -output bc -numReducers 2
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.BigramCountPairs -input 1400-8.txt -output bc -numReducers 2
 ```
 To debug, you can either examine the output manually or use the analysis tool provided in `AnalyzeBigramCount.java`:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeBigramCount -input bc
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeBigramCount -input bc
 ```
 As a reference, you should see something like this:
 ```
@@ -194,13 +194,13 @@ We can tell from the output above that "It" has 2 occurrences, both succeeded by
 
 Once you are done coding, you can build your programs by `mvn clean package --settings settings.xml`, and run them:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.BigramFrequencyPairs -input 1400-8.txt -output bc -numReducers 2
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.BigramFrequencyPairs -input 1400-8.txt -output bc -numReducers 2
 ```
 In the command above, we have specified the input file, the output path, and the number of reducers. You are free to try something different.
 
 To debug, we have provided a handy tool (`AnalyzeBigramFrequency.java`) which you can use to produce a statistical summary of your output. For example, if you are interested in bigrams starting with "the", you can extract the ten most frequent occurrences by
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeBigramFrequency -input bc -word the
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.AnalyzeBigramFrequency -input bc -word the
 Ten most frequent bigrams starting with the:
 the		7216.0
 the	same	0.011086474
@@ -237,24 +237,28 @@ Similar to Warming up 2 and Part 1, you will build two versions of the program:
 
 Once you are done coding, you can build your programs by `mvn clean package --settings settings.xml`, and run them:
 ```
-$ hadoop jar target/assignment-3-1.0-SNAPSHOT.jar hk.ust.comp4651.CORStripes -input cor-demo-sample.txt -output cor -numReducers 2
+$ hadoop jar target/assignment-2-1.0-SNAPSHOT.jar hk.ust.comp4651.CORStripes -input cor-demo-sample.txt -output cor -numReducers 2
 ```
 In the command above, we have specified the input file, the output path, and the number of reducers. You are free to try something different.
 
-> **Hint:**
+> **Hint 1:**
 >
 > In this problem, you are required to do MapReduce twice.
 >
 > In the first pass, MapReduce produces a middle result that contains the frequency of each word (i.e., Freq(A))
 >
 > In the second pass, MapReduce firstly reads the middle result, then produces Freq(A, B) for each word pair (A, B) and calculates COR(A, B).
+>
+> **Hint 2:**
+>
+> The fisrt-pass MapReduce code of CORPairs and CORStripes should be same.
 
 **Output format:** For each word pair "A"-"B", the program outputs the two words "A" and "B" ("A" is alphabetically smaller than "B"), then outputs COR(A, B). The three items are seperated by tab (`"\t"`).
 
-For the sample input `cor-demo-sample.txt`, we have provided the sample output `cor-demo-output.txt` and the sample middle file generated by the first-pass MapReduce `cor-demo-mid.txt`. You can use these files to debug your program.
+For the sample input `cor-demo-sample.txt`, we have provided the sample output `cor-demo-output.txt` and the sample middle file generated by the first-pass MapReduce `cor-demo-mid.txt`. You can use these files to debug your program. (Note: the sample output is generated with option `numReducers=1`)
 
 ### Grading
-We will clone your repo, go into your `assignment-3-yourGitHubHandle/` directory, and build your Maven artifact. We will run the two programs (i.e., `BigramFrequencyPairs.java`, and `BigramFrequencyStripes.java`) with input test cases (different from `1400-8.txt`) and compare the results with the standard output.
+We will clone your repo, go into your `assignment-2-yourGitHubHandle/` directory, and build your Maven artifact. We will run the four programs (i.e., `BigramFrequencyPairs.java`, `BigramFrequencyStripes.java`, `CORPairs.java`, and `CORStripes.java`) with input test cases (different from `1400-8.txt` and `cor-demo-sample.txt`) and compare the results with the standard output.
 
 
 [QuickStarts]: https://downloads.cloudera.com/demo_vm/virtualbox/cloudera-quickstart-vm-5.13.0-0-virtualbox.zip
