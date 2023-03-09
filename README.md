@@ -222,13 +222,19 @@ We define the correlation coefficient of two words A and B as COR(A, B):
 
 COR(A, B) = Freq(A, B) / (Freq(A) * Freq(B))
 
-Freq(A, B) denotes the frequency of the word pair (A, B) in each lines of a given text. Please be noted that each occurrence of a word pair (A, B) & (B, A) will be only counted for once.
+Freq(A, B) denotes the frequency of the word pair (A, B) in each lines of a given text.
 
-For example, if a line contains words "A A B C", Freq(A, B) is 2, not 4.
+Please be noted that each occurrence of a word pair (A, B) & (B, A) will be only counted for once.
+
+For example, if the input data only contains one line "A A B C", **Freq(A, B) is 1, not 2 or 4**. 
+
+But if the input data has multiple lines, and there are three lines containing word pairs (A, B) or (B, A), **Freq(A, B) = 3**. An example is Freq("to", "which") = 3, which can be found in `cor-demo-sample.txt`. 
 
 Freq(A) denotes the frequency of the word A in the text. In above example "A A B C", Freq(A) = 2, Freq(B) = 1.
 
-To help you better understand this problem, we have provided a demo Python program `demo/cor-demo.py`.
+To help you better understand this problem, we have provided a demo Python program `demo/cor-demo.py`. 
+
+> **We will use the Python demo program to check if your program's output is correct. You can use this demo program to double-check your solution before submission.  Please ignore the differences in output order. Any order of correct output will be regarded as full marks.**
 
 Similar to Warming up 2 and Part 1, you will build two versions of the program:
 
