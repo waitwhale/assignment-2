@@ -239,7 +239,7 @@ To help you better understand this problem, we have provided a demo Python progr
 Similar to Warming up 2 and Part 1, you will build two versions of the program:
 
 1. (**2 marks**) *A "pairs" implementation.* The implementation must use combiners and partitioners. You will start with the skeleton code in `CORPairs.java`. You will be using the data type provided in `PairOfStrings.java`.
-2. (**2 marks**) *A "stripes" implementation.* The implementation must use combiners. You will start with the skeleton code in `CORStripes.java`. You will be using the data type provided in `PairOfStrings.java` and `HashMapStringIntWritable.java`.
+2. (**2 marks**) *A "stripes" implementation.* The implementation must use combiners. You will start with the skeleton code in `CORStripes.java`. You will be using the data type provided in `PairOfStrings.java`.
 
 Once you are done coding, you can build your programs by `mvn clean package --settings settings.xml`, and run them:
 ```
