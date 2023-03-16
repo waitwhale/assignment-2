@@ -100,17 +100,30 @@ public class BigramCountStripes extends Configured implements Tool {
 			String first_w = key.toString();
 			while (iter.hasNext()) {
 				SUM_STRIPES.plus(iter.next());
-			}
+				
 			
-	        for (Entry<String, Integer> mapElement : SUM_STRIPES.entrySet()) { 
-	            String second_w = (String) mapElement.getKey(); 
-	            int value = (int) mapElement.getValue();
-	            BIGRAM.set(first_w, second_w);
-	            COUNT.set(value);
-	            context.write(BIGRAM, COUNT);
-	        }
+			int marginalCount = 0;
+			for (Entry<String, Integer> mapElement : SUM_STRIPES.entrySet()) 
+			{ 
+	            		int value = (int) mapElement.getValue();
+	            		marginalCount += value;
+	        	}
+	        	BIGRAM.set(first_w, "");
+            		FREQ.set(marginalCount);
+            		context.write(BIGRAM, FREQ);
+			
+	        	
+
+	        	for (Entry<String, Integer> mapElement : SUM_STRIPES.entrySet()) 
+			{ 
+	            		String second_w = (String) mapElement.getKey(); 
+	            		int value = (int) mapElement.getValue();
+	           		BIGRAM.set(first_w, second_w);
+	            		COUNT.set(value);
+	            		context.write(BIGRAM, COUNT);
+	        	}
 	        
-	        SUM_STRIPES.clear();
+			SUM_STRIPES.clear();
 		}
 	}
 
