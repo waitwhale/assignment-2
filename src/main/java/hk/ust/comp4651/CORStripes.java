@@ -105,7 +105,7 @@ public class CORStripes extends Configured implements Tool {
 		 */
 		@Override
 		protected void setup(Context context) throws IOException, InterruptedException {
-			Path middle_result_path = new Path("hdfs://quickstart.cloudera:9000/user/root/mid/part-r-00000");
+			Path middle_result_path = new Path("mid/part-r-00000");
 			Configuration middle_conf = new Configuration();
 			try {
 				FileSystem fs = FileSystem.get(URI.create(middle_result_path.toString()), middle_conf);
